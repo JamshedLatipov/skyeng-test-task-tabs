@@ -1,0 +1,20 @@
+<div class="tabs__titles">
+  <div
+    class="tabs__title"
+    (click)="selectTab(item)"
+    [class.tabs__title--active]="activeTab === item"
+    *ngFor="let item of tabItems$ | async"
+  >
+    <ng-container *ngIf="item.titleComponent">
+      <ng-container *ngTemplateOutlet="item.titleComponent.titleContent">
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<div>
+  <ng-container *ngIf="activeTab && activeTab.contentComponent">
+    <ng-container *ngTemplateOutlet="activeTab.contentComponent.content">
+    </ng-container>
+  </ng-container>
+</div>
